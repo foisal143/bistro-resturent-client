@@ -10,8 +10,8 @@ const FromOurMenu = () => {
             heading="FROM OUR MENU"
             subHeading="Check it out"
           ></SectionTitle>
-          <div className="mt-12 px-20 flex justify-between items-center gap-10">
-            <img className="w-2/5 " src={img} alt="" />
+          <div className="mt-12 px-20 space-y-5 lg:flex justify-between items-center gap-10">
+            <img className=" lg:w-2/5  " src={img} alt="" />
             <div>
               <h3 className="font-[Cinzen] text-3xl text-gray-300">
                 March 20, 2023 <br /> WHERE CAN I GET SOME?{' '}

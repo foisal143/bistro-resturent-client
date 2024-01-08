@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Bannar></Bannar>
-      <div className="px-32">
+      <div className="lg:px-32 px-5">
         <OrderOnline></OrderOnline>
         <BestroBoss></BestroBoss>
         <Menu></Menu>

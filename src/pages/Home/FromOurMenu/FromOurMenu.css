@@ -3,3 +3,9 @@
   height: 600px;
   background-position: center center;
 }
+
+@media (max-width: 600px) {
+  .ourMenuBg {
+    height: 1000px;
+  }
+}
