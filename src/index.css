@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 5px black;
+}
+
+.btn-coustom {
+  @apply px-5 py-2 transition-all duration-500 border-black rounded-md text-black border-b-4 bg-transparent uppercase hover:bg-black hover:text-white;
+}

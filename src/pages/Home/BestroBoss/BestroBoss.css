@@ -1,0 +1,6 @@
+.bg-image {
+  background-image: url('../../../assets//home/chef-service.jpg');
+  scroll-behavior: smooth;
+  background-position: center;
+  transition: all 0.2s;
+}
