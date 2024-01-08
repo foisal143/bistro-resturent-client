@@ -5,6 +5,7 @@ import Contact from '../Contact/Contact';
 import FromOurMenu from '../FromOurMenu/FromOurMenu';
 import Menu from '../Menu/Menu';
 import OrderOnline from '../OrderOnline/OrderOnline';
+import Testimonial from '../Testimonial/Testimonial';
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
         <ChefREcomendate></ChefREcomendate>
       </div>
       <FromOurMenu></FromOurMenu>
+      <Testimonial></Testimonial>
     </div>
   );
 };

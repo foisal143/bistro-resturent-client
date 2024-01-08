@@ -3,7 +3,7 @@ import './FromOurMenu.css';
 import img from '../../../assets/home/featured.jpg';
 const FromOurMenu = () => {
   return (
-    <section className="my-12 ourMenuBg relative  py-12">
+    <section className="my-32 bg-fixed ourMenuBg relative  py-12">
       <div className="absolute flex justify-center items-center top-0 w-full h-full bg-black/50 ">
         <div className="w-full text-white">
           <SectionTitle
@@ -22,7 +22,7 @@ const FromOurMenu = () => {
                 quasi. Eaque repellat recusandae ad laudantium tempore
                 consequatur consequuntur omnis ullam maxime tenetur.
               </p>
-              <button className="btn-coustom">Read More</button>
+              <button className="btn-coustom mt-5 text-white">Read More</button>
             </div>
           </div>
         </div>
