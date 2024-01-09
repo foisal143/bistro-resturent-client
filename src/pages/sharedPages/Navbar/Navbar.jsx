@@ -40,7 +40,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/our-shop"
+          to={`/order/${'salad' || 'pizza' || 'dessert' || 'soup' || 'drinks'}`}
           className={({ isActive }) => (isActive ? 'text-[#EEFF25]' : '')}
         >
           Our Shop
@@ -91,7 +91,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-20 p-2 shadow bg-black/75 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-20 p-2 shadow bg-black/75 upparcase rounded-box w-52"
             >
               {navLink}
             </ul>
@@ -106,7 +106,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className=" hidden w-fit  lg:flex">
-          <ul className=" gap-5  flex items-center px-1 w-full">{navLink}</ul>
+          <ul className=" gap-5  flex items-center px-1 uppercase w-full">
+            {navLink}
+          </ul>
         </div>
       </div>
     </div>
