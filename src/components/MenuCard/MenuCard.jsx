@@ -9,9 +9,7 @@ const MenuCard = ({ menu }) => {
         alt=""
       />
       <div className="flex-1">
-        <h3 className="text-xl font-bold font-[Cinzen]">
-          {name} -----------------------
-        </h3>
+        <h3 className="text-xl font-bold font-[Cinzen]">{name} ----------</h3>
         <p className="font-[Inter]">{recipe}</p>
       </div>
       <p className="text-[#BB8506]">${price}</p>
