@@ -1,0 +1,7 @@
+.loginBg {
+  background-image: url('../../assets/others/authentication.png');
+}
+
+.bgshadow {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
+}

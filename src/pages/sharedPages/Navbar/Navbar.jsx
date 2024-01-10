@@ -2,8 +2,16 @@ import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 import cartimage from '../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
 import profileimage from '../../../assets/others/profile.png';
+import { useContext } from 'react';
+import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
 const Navbar = () => {
-  const user = true;
+  const { user, logout } = useContext(AuthContext);
+
+  const handlerLogout = () => {
+    logout()
+      .then()
+      .catch(er => console.log(er.message));
+  };
   const navLink = (
     <>
       <li>
@@ -53,7 +61,12 @@ const Navbar = () => {
       </li>
       {user ? (
         <li className="flex items-center gap-2">
-          <button>SIGN OUT</button>
+          <button
+            className="btn btn-outline btn-accent"
+            onClick={handlerLogout}
+          >
+            SIGN OUT
+          </button>
           <img className="w-8 h-8 rounded-full" src={profileimage} alt="" />
         </li>
       ) : (

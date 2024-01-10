@@ -3,6 +3,8 @@ import Main from '../layouts/Main';
 import Home from '../pages/Home/Home/Home';
 import OurMenu from '../pages/OurMenu/OurMenu/OurMenu';
 import OurShop from '../pages/OurShop/OurShop/OurShop';
+import Login from '../pages/Login/Login';
+import Registar from '../pages/Registar/Registar';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: 'order/:category',
         element: <OurShop></OurShop>,
+      },
+      {
+        path: 'login',
+        element: <Login></Login>,
+      },
+      {
+        path: 'registar',
+        element: <Registar></Registar>,
       },
     ],
   },

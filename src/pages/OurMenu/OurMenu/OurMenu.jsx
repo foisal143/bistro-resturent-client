@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import coverImage from '../../../assets/menu/banner3.jpg';
 import Cover from '../../sharedPages/Cover/Cover';
 import Dessart from '../Dessart/Dessart';
@@ -9,6 +10,9 @@ import TodaysOffer from '../TodysOffer/TodaysOffer';
 const OurMenu = () => {
   return (
     <div>
+      <Helmet>
+        <title className="upparcase">Bistro | Menu</title>
+      </Helmet>
       <Cover
         img={coverImage}
         details="Would you like to try a dish?"

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import useMenu from '../../../hooks/useMenu';
 import 'react-tabs/style/react-tabs.css';
 import OrderFoodCard from '../../../components/OrderFoodCart/OrderFoodCard';
+import { Helmet } from 'react-helmet';
 const OurShop = () => {
   const { category } = useParams();
   const items = ['salad', 'pizza', 'soup', 'dessert', 'drink'];
@@ -20,6 +21,9 @@ const OurShop = () => {
   const drink = menus.filter(item => item.category === 'drinks');
   return (
     <div>
+      <Helmet>
+        <title className="upparcase">Bistro | Shop</title>
+      </Helmet>
       <Cover
         img={orderPageImage}
         details="Would you like to try a dish?"

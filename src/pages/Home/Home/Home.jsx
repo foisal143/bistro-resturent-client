@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import Bannar from '../Bannar/Bannar';
 import BestroBoss from '../BestroBoss/BestroBoss';
 import ChefREcomendate from '../ChefRecomendate/ChefREcomendate';
@@ -10,6 +11,9 @@ import Testimonial from '../Testimonial/Testimonial';
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title className="upparcase">Bistro | Home</title>
+      </Helmet>
       <Bannar></Bannar>
       <div className="lg:px-32 px-5">
         <OrderOnline></OrderOnline>
