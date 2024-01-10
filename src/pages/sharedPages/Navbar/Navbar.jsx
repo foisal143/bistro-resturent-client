@@ -1,9 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 import cartimage from '../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
-import profileimage from '../../../assets/others/profile.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
+
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
@@ -67,7 +67,11 @@ const Navbar = () => {
           >
             SIGN OUT
           </button>
-          <img className="w-8 h-8 rounded-full" src={profileimage} alt="" />
+          <img
+            className="w-8 h-8 rounded-full"
+            src={user && user?.photoURL}
+            alt=""
+          />
         </li>
       ) : (
         <li>

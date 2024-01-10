@@ -7,13 +7,15 @@ import {
 } from 'react-simple-captcha';
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
 import { AuthContext } from '../../AuthPorvaider/AuthProvaider';
 const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.pathname || '/';
   const { googleLogin, loginUser } = useContext(AuthContext);
   const {
     register,
@@ -28,13 +30,15 @@ const Login = () => {
   const onSubmit = data => {
     setError('');
     setSuccess('');
+
     const { email, password, captcha } = data;
+
     if (validateCaptcha(captcha)) {
       setSuccess('Login success');
       loginUser(email, password)
         .then(result => {
           const loggedUser = result.user;
-          navigate('/');
+          navigate(from, { replace: true });
           setSuccess('Login success');
           console.log(loggedUser);
         })
@@ -50,7 +54,7 @@ const Login = () => {
     googleLogin()
       .then(res => {
         const loggedUser = res.user;
-        navigate('/');
+        navigate(from, { replace: true });
         setSuccess('Login success');
         console.log(loggedUser);
       })
@@ -59,7 +63,7 @@ const Login = () => {
 
   return (
     <div className="loginBg py-12 flex justify-center items-center min-h-screen w-full">
-      <div className="bgshadow  w-10/12 p-5 lg:p-10 mx-auto">
+      <div className="bgshadow  w-10/12 px-5  lg:p-10 mx-auto">
         <div className="hero  bg-transparent">
           <div className="hero-content flex-col items-center lg:flex-row">
             <div className="text-center lg:text-left">

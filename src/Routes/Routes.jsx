@@ -5,6 +5,7 @@ import OurMenu from '../pages/OurMenu/OurMenu/OurMenu';
 import OurShop from '../pages/OurShop/OurShop/OurShop';
 import Login from '../pages/Login/Login';
 import Registar from '../pages/Registar/Registar';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -17,11 +18,19 @@ const router = createBrowserRouter([
       },
       {
         path: 'our-menu',
-        element: <OurMenu></OurMenu>,
+        element: (
+          <PrivateRoute>
+            <OurMenu></OurMenu>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'order/:category',
-        element: <OurShop></OurShop>,
+        element: (
+          <PrivateRoute>
+            <OurShop></OurShop>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'login',
