@@ -19,7 +19,6 @@ import IsAdmin from '../hooks/isAdmin';
 const Dashboard = () => {
   const [carts] = useCarts();
   const [isadmin] = IsAdmin();
-  console.log(isadmin);
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -67,12 +66,12 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
+                <NavLink to="add-item">
                   <FaUtensilSpoon /> add items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/payment">
+                <NavLink to="manage-items">
                   <FaBars /> manage items
                 </NavLink>
               </li>

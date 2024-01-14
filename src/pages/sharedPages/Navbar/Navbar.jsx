@@ -13,6 +13,7 @@ const Navbar = () => {
     logout()
       .then(() => {
         refetch();
+        localStorage.removeItem('ac-token');
       })
       .catch(er => console.log(er.message));
   };
