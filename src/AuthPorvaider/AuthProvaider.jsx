@@ -45,6 +45,18 @@ const AuthProvaider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
       setLoader(false);
+      const email = { email: currentUser.email };
+      fetch('http://localhost:5000/jwt', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(email),
+      })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('ac-token', data.token);
+        });
     });
     return () => unsubscribe();
   }, [auth]);

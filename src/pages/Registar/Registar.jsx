@@ -1,15 +1,17 @@
 import registarImage from '../../assets/others/authentication2.png';
 
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../AuthPorvaider/AuthProvaider';
+import toast from 'react-hot-toast';
 const Registar = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const { googleLogin, createUser, updateUserProfile } =
     useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,14 +19,33 @@ const Registar = () => {
   } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
     const { name, password, email, image } = data;
     createUser(email, password)
       .then(res => {
         const registerdUser = res.user;
         setSuccess('Registar success');
+
         updateUserProfile(registerdUser, name, image)
-          .then()
+          .then(() => {
+            const userInfo = {
+              name: registerdUser.displayName,
+              email: registerdUser.email,
+            };
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify(userInfo),
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.insertedId > 0) {
+                  navigate('/');
+                  toast.success('User Added Success');
+                }
+              });
+          })
           .catch(er => setError(er.message));
       })
       .catch(er => er.message);
@@ -35,7 +56,24 @@ const Registar = () => {
       .then(res => {
         const loggedUser = res.user;
         setSuccess('Registar success');
-        console.log(loggedUser);
+        const userInfo = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+        };
+        fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.insertedId > 0) {
+              navigate('/');
+              toast.success('User Added Success');
+            }
+          });
       })
       .catch(er => setError(er.message));
   };

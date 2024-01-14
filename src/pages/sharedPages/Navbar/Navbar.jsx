@@ -3,13 +3,17 @@ import './Navbar.css';
 import cartimage from '../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
+import useCarts from '../../../hooks/useCarts';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [carts, refetch] = useCarts();
 
   const handlerLogout = () => {
     logout()
-      .then()
+      .then(() => {
+        refetch();
+      })
       .catch(er => console.log(er.message));
   };
   const navLink = (
@@ -54,10 +58,13 @@ const Navbar = () => {
           Our Shop
         </NavLink>
       </li>
-      <li>
-        <Link>
-          <img className="w-8 h-8" src={cartimage} alt="" />
+      <li className="relative">
+        <Link to="/dashboard/cart">
+          <img className="w-12 h-12" src={cartimage} alt="" />
         </Link>
+        <span className=" w-4 h-4 flex p-2 absolute left-10 lg:left-7 lg:right-0 lg:top-[26px] top-[30px] justify-center items-center rounded-full bg-[#ff0000] text-white">
+          {carts.length}
+        </span>
       </li>
       {user ? (
         <li className="flex items-center gap-2">
@@ -66,7 +73,7 @@ const Navbar = () => {
             onClick={handlerLogout}
           >
             SIGN OUT
-          </button>
+          </button>{' '}
           <img
             className="w-8 h-8 rounded-full"
             src={user && user?.photoURL}

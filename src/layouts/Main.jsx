@@ -1,6 +1,7 @@
 import Navbar from '../pages/sharedPages/Navbar/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../pages/sharedPages/Footer/Footer';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const Main = () => {
   const location = useLocation();

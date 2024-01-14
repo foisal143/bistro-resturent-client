@@ -6,6 +6,10 @@ import OurShop from '../pages/OurShop/OurShop/OurShop';
 import Login from '../pages/Login/Login';
 import Registar from '../pages/Registar/Registar';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Dashboard from '../layouts/Dashboard';
+import DashboardUserHome from '../pages/DashboardUser/DashboardUser/DashboardUserHome';
+import MyCart from '../pages/DashboardUser/MyCart/MyCart';
+import AllUsers from '../pages/DashboardUser/AllUsers/AllUsers';
 
 const router = createBrowserRouter([
   {
@@ -18,19 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'our-menu',
-        element: (
-          <PrivateRoute>
-            <OurMenu></OurMenu>
-          </PrivateRoute>
-        ),
+        element: <OurMenu></OurMenu>,
       },
       {
         path: 'order/:category',
-        element: (
-          <PrivateRoute>
-            <OurShop></OurShop>
-          </PrivateRoute>
-        ),
+        element: <OurShop></OurShop>,
       },
       {
         path: 'login',
@@ -39,6 +35,39 @@ const router = createBrowserRouter([
       {
         path: 'registar',
         element: <Registar></Registar>,
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: '/dashboard',
+        element: (
+          <PrivateRoute>
+            <DashboardUserHome></DashboardUserHome>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/dashboard/cart',
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'all-users',
+        element: <AllUsers />,
+      },
+      {
+        path: '',
       },
     ],
   },

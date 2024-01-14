@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
 import { AuthContext } from '../../AuthPorvaider/AuthProvaider';
+import toast from 'react-hot-toast';
 const Login = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -56,7 +57,23 @@ const Login = () => {
         const loggedUser = res.user;
         navigate(from, { replace: true });
         setSuccess('Login success');
-        console.log(loggedUser);
+        const userInfo = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+        };
+        fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.insertedId > 0) {
+              toast.success('User Added Success');
+            }
+          });
       })
       .catch(er => setError(er.message));
   };
