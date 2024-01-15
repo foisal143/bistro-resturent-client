@@ -13,6 +13,7 @@ import AllUsers from '../pages/DashboardUser/AllUsers/AllUsers';
 import AddItem from '../pages/DashboardUser/AddItem/AddItem';
 import ManageItems from '../pages/DashboardUser/ManageItems/ManageItems';
 import UpdateItem from '../pages/DashboardUser/UpdateItem/UpdateItem';
+import ContactPage from '../pages/ContactPage/ContactPage/ContactPage';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'registar',
         element: <Registar></Registar>,
+      },
+      {
+        path: 'contact',
+        element: <ContactPage />,
       },
     ],
   },

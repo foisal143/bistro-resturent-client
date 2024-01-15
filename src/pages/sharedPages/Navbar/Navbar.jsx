@@ -29,7 +29,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/contuct"
+          to="/contact"
           className={({ isActive }) => (isActive ? 'text-[#EEFF25]' : '')}
         >
           CONTACT us

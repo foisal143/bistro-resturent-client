@@ -41,7 +41,23 @@ const Login = () => {
           const loggedUser = result.user;
           navigate(from, { replace: true });
           setSuccess('Login success');
-          console.log(loggedUser);
+          const userInfo = {
+            name: loggedUser.displayName,
+            email: loggedUser.email,
+          };
+          fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.insertedId > 0) {
+                toast.success('User Added Success');
+              }
+            });
         })
         .catch(er => setError(er.message));
       return;
