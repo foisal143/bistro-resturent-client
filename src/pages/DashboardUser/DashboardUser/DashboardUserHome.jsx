@@ -7,12 +7,19 @@ import {
   FaShoppingBag,
   FaShoppingCart,
   FaStar,
+  FaUsers,
+  FaWallet,
 } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
+import IsAdmin from '../../../hooks/isAdmin';
+import useUsers from '../../../hooks/useUsers';
 const DashboardUserHome = () => {
-  const [menus] = useMenu();
   const { user } = useContext(AuthContext);
+  const [menus] = useMenu();
+  const [users] = useUsers();
+  const [isadmin] = IsAdmin();
+  console.log(users);
   return (
     <div className="px-12 pt-12  w-full bg-white">
       <h3 className="text-3xl font-[Cinzen] font-semibold ">
@@ -21,29 +28,43 @@ const DashboardUserHome = () => {
       <div className="grid my-10 grid-cols-1 md:grid-cols-3 gap-5">
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FCDBFF] from-[#BB34F5] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
           <span className="text-4xl">
-            <IoWalletSharp></IoWalletSharp>
+            {isadmin ? <FaWallet /> : <IoWalletSharp></IoWalletSharp>}
           </span>
           <aside>
-            <h3 className="text-3xl font-bold">{menus.length}</h3>
-            <p className="uppercase text-xl font-semibold">menu</p>
+            <h3 className="text-3xl font-bold">
+              {isadmin ? '554151' : menus.length}
+            </h3>
+            <p className="uppercase text-xl font-semibold">
+              {isadmin ? 'revenue' : 'menu'}
+            </p>
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FDE8C0] from-[#D3A256] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
           <span className="text-4xl">
-            <FaShoppingBag></FaShoppingBag>
+            {isadmin ? <FaUsers /> : <FaShoppingBag />}
           </span>
           <aside>
-            <h3 className="text-3xl font-bold">{menus.length}</h3>
-            <p className="uppercase text-xl font-semibold">shop</p>
+            <h3 className="text-3xl font-bold">
+              {isadmin ? users.length : menus.length}
+            </h3>
+            <p className="uppercase text-xl font-semibold">
+              {isadmin ? 'users' : 'shop'}
+            </p>
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FECDE9] from-[#FE4880] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
           <span className="text-4xl">
-            <FaPhone></FaPhone>
+            {isadmin ? <FaShoppingBag /> : <FaPhone />}
           </span>
           <aside>
-            <h3 className="text-3xl font-bold">01403406419</h3>
-            <p className="uppercase text-xl font-semibold">Contact</p>
+            <h3 className="text-3xl font-bold">
+              {isadmin
+                ? menus.length
+                : `+ ${Math.round(Math.random() * 10000000000)}`}
+            </h3>
+            <p className="uppercase text-xl font-semibold">
+              {isadmin ? 'products' : 'contact'}
+            </p>
           </aside>
         </div>
       </div>
