@@ -19,7 +19,6 @@ const DashboardUserHome = () => {
   const [menus] = useMenu();
   const [users] = useUsers();
   const [isadmin] = IsAdmin();
-  console.log(users);
   return (
     <div className="px-12 pt-12  w-full bg-white">
       <h3 className="text-3xl font-[Cinzen] font-semibold ">

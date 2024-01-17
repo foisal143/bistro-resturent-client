@@ -33,6 +33,7 @@ const AuthProvaider = ({ children }) => {
   };
 
   const updateUserProfile = (user, name, image) => {
+    setLoader(true);
     return updateProfile(user, { displayName: name, photoURL: image });
   };
 
@@ -44,19 +45,21 @@ const AuthProvaider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
-      setLoader(false);
-      const email = { email: currentUser.email };
-      fetch('http://localhost:5000/jwt', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(email),
-      })
-        .then(res => res.json())
-        .then(data => {
-          localStorage.setItem('ac-token', data.token);
-        });
+      if (currentUser) {
+        const email = { email: currentUser.email };
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(email),
+        })
+          .then(res => res.json())
+          .then(data => {
+            localStorage.setItem('ac-token', data.token);
+            setLoader(false);
+          });
+      }
     });
     return () => unsubscribe();
   }, [auth]);

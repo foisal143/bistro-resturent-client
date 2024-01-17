@@ -14,6 +14,7 @@ import AddItem from '../pages/DashboardUser/AddItem/AddItem';
 import ManageItems from '../pages/DashboardUser/ManageItems/ManageItems';
 import UpdateItem from '../pages/DashboardUser/UpdateItem/UpdateItem';
 import ContactPage from '../pages/ContactPage/ContactPage/ContactPage';
+import AdminRoute from '../AdminRoute/AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -72,19 +73,35 @@ const router = createBrowserRouter([
       },
       {
         path: 'all-users',
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: 'add-item',
-        element: <AddItem />,
+        element: (
+          <AdminRoute>
+            <AddItem />
+          </AdminRoute>
+        ),
       },
       {
         path: 'manage-items',
-        element: <ManageItems />,
+        element: (
+          <AdminRoute>
+            <ManageItems />
+          </AdminRoute>
+        ),
       },
       {
         path: 'manage-items/update-item/:id',
-        element: <UpdateItem />,
+        element: (
+          <AdminRoute>
+            <UpdateItem />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/menus/${params.id}`),
       },

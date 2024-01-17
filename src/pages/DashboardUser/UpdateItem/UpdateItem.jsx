@@ -3,10 +3,12 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-
+import useAxiosWithAuth from '../../../hooks/axiosSciure';
+const imageApiKey = import.meta.env.VITE_IMAGE_APIKEY;
 const UpdateItem = () => {
   const [photo, setImage] = useState('');
   const updateMenu = useLoaderData();
+  const axiosSciure = useAxiosWithAuth();
   const { name, price, category, recipe } = updateMenu;
   const handleSubmit = e => {
     e.preventDefault();
@@ -20,27 +22,52 @@ const UpdateItem = () => {
     if (!imageFile) {
       return toast.error('you must chose an image');
     }
-    // image file reader logic
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(imageFile);
-    const itemsInfo = { name, price, recipe, image: photo, category };
 
-    fetch(`http://localhost:5000/menus/${updateMenu._id}`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(itemsInfo),
+    // for image hosting
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    fetch(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, {
+      method: 'POST',
+      body: formData,
     })
       .then(res => res.json())
       .then(data => {
-        if (data.modifiedCount > 0) {
-          toast.success('product update success');
+        if (data.success) {
+          console.log(data.data.display_url);
+
+          const itemsInfo = {
+            name,
+            price,
+            recipe,
+            image: data.data.display_url,
+            category,
+          };
+
+          axiosSciure.put(`/menus/${updateMenu._id}`, itemsInfo).then(data => {
+            console.log(data.data);
+            if (data.data.modifiedCount > 0) {
+              toast.success('product updated success');
+              form.reset();
+            }
+          });
         }
       });
+
+    // image file reader logic
+    // const reader = new FileReader();
+    // reader.onloadend = () => {
+    //   setImage(reader.result);
+    // };
+    // reader.readAsDataURL(imageFile);
+
+    // axiosSciure
+    //   .put(`/menus/${updateMenu._id}`, itemsInfo)
+
+    //   .then(data => {
+    //     if (data.data.modifiedCount > 0) {
+    //       toast.success('product update success');
+    //     }
+    //   });
   };
 
   return (

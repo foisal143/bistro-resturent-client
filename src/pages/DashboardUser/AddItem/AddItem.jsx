@@ -1,11 +1,11 @@
 import { FaUtensilSpoon } from 'react-icons/fa';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import { useState } from 'react';
 import toast from 'react-hot-toast';
+import useAxiosWithAuth from '../../../hooks/axiosSciure';
+const imageApiKey = import.meta.env.VITE_IMAGE_APIKEY;
 
 const AddItem = () => {
-  const [image, setImage] = useState('');
-
+  const axiosSciure = useAxiosWithAuth();
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
@@ -15,27 +15,41 @@ const AddItem = () => {
     const imageFile = form.image.files[0];
     const category = form.category.value;
 
-    // image file reader logic
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(imageFile);
-    const itemsInfo = { name, price, recipe, image, category };
-
-    fetch('http://localhost:5000/menus', {
+    // for image hosting
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    fetch(`https://api.imgbb.com/1/upload?key=${imageApiKey}`, {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(itemsInfo),
+      body: formData,
     })
       .then(res => res.json())
       .then(data => {
-        if (data.insertedId) {
-          toast.success('product added success');
+        if (data.success) {
+          console.log(data.data.display_url);
+          const itemsInfo = {
+            name,
+            price,
+            recipe,
+            image: data.data.display_url,
+            category,
+          };
+
+          axiosSciure.post('/menus', itemsInfo).then(data => {
+            if (data.data.insertedId) {
+              toast.success('product added success');
+              form.reset();
+            }
+          });
         }
       });
+
+    // image file reader logic
+
+    // const reader = new FileReader();
+    // reader.onloadend = () => {
+    //   setImage(reader.result);
+    // };
+    // reader.readAsDataURL(imageFile);
   };
 
   return (

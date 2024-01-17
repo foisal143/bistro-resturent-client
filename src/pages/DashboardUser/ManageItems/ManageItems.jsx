@@ -3,10 +3,11 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useMenu from '../../../hooks/useMenu';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import useAxiosWithAuth from '../../../hooks/axiosSciure';
 
 const ManageItems = () => {
   const [menus, refetch] = useMenu();
-
+  const axiosSciure = useAxiosWithAuth();
   const handlerDeleteCart = id => {
     Swal.fire({
       title: 'Are you sure?',
@@ -18,12 +19,11 @@ const ManageItems = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/menus/${id}`, {
-          method: 'DELETE',
-        })
-          .then(res => res.json())
+        axiosSciure
+          .delete(`/menus/${id}`)
+
           .then(data => {
-            if (data.deletedCount > 0) {
+            if (data.data.deletedCount > 0) {
               refetch();
               Swal.fire({
                 title: 'Deleted!',
