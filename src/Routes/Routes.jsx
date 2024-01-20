@@ -17,6 +17,8 @@ import ContactPage from '../pages/ContactPage/ContactPage/ContactPage';
 import AdminRoute from '../AdminRoute/AdminRoute';
 import PayPage from '../pages/DashboardUser/PayPage/PayPage';
 import PaymentHistory from '../pages/DashboardUser/PaymentHistory/PaymentHistory';
+import Reservation from '../pages/DashboardUser/Reservation/Reservation';
+import MyBookings from '../pages/DashboardUser/MyBookings/MyBookings';
 
 const router = createBrowserRouter([
   {
@@ -87,6 +89,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PaymentHistory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'reservation',
+        element: (
+          <PrivateRoute>
+            <Reservation />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'my-booking',
+        element: (
+          <PrivateRoute>
+            <MyBookings />
           </PrivateRoute>
         ),
       },
