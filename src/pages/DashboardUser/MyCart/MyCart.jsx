@@ -2,6 +2,7 @@ import { FaTrash } from 'react-icons/fa';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useCarts from '../../../hooks/useCarts';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
   const [carts, refetch] = useCarts();
@@ -45,9 +46,12 @@ const MyCart = () => {
         <div className="flex  mb-5 font-[Cinzen] gap-10 justify-evenly items-center font-semibold text-3xl">
           <h3>Total Orders: {carts.length}</h3>
           <h3>Total Price: ${total}</h3>
-          <button className="px-3 py-2 rounded-md text-base text-white  bg-[#D1A054]">
-            Pay
-          </button>
+          <Link to="/dashboard/pay">
+            {' '}
+            <button className="px-3 py-2 rounded-md text-base text-white  bg-[#D1A054]">
+              Pay
+            </button>
+          </Link>
         </div>
 
         <div className="overflow-x-auto">

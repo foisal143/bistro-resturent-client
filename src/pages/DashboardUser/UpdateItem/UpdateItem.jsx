@@ -1,15 +1,14 @@
 import { FaUtensilSpoon } from 'react-icons/fa';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useAxiosWithAuth from '../../../hooks/axiosSciure';
 const imageApiKey = import.meta.env.VITE_IMAGE_APIKEY;
 const UpdateItem = () => {
-  const [photo, setImage] = useState('');
   const updateMenu = useLoaderData();
   const axiosSciure = useAxiosWithAuth();
   const { name, price, category, recipe } = updateMenu;
+
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;

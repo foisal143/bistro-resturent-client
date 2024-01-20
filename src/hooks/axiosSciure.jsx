@@ -3,13 +3,12 @@ import { useContext } from 'react';
 import { AuthContext } from '../AuthPorvaider/AuthProvaider';
 import { Swal } from 'sweetalert2/dist/sweetalert2';
 import { useNavigate } from 'react-router-dom';
-
+const axiosSciure = axios.create({
+  baseURL: 'http://localhost:5000',
+});
 const useAxiosWithAuth = () => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
-  const axiosSciure = axios.create({
-    baseURL: 'http://localhost:5000',
-  });
 
   // Add an interceptor for handling requests
   axiosSciure.interceptors.request.use(

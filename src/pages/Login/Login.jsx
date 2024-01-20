@@ -18,11 +18,7 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.pathname || '/';
   const { googleLogin, loginUser } = useContext(AuthContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     loadCaptchaEnginge(6);

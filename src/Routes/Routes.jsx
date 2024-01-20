@@ -15,6 +15,8 @@ import ManageItems from '../pages/DashboardUser/ManageItems/ManageItems';
 import UpdateItem from '../pages/DashboardUser/UpdateItem/UpdateItem';
 import ContactPage from '../pages/ContactPage/ContactPage/ContactPage';
 import AdminRoute from '../AdminRoute/AdminRoute';
+import PayPage from '../pages/DashboardUser/PayPage/PayPage';
+import PaymentHistory from '../pages/DashboardUser/PaymentHistory/PaymentHistory';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +73,25 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      {
+        path: 'pay',
+        element: (
+          <PrivateRoute>
+            <PayPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'payment-history',
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
+      },
+
+      // admin route
       {
         path: 'all-users',
         element: (
