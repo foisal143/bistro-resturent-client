@@ -4,11 +4,12 @@ import cartimage from '../../../assets/icon/151-1511569_cart-notifications-free-
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
 import useCarts from '../../../hooks/useCarts';
+import IsAdmin from '../../../hooks/isAdmin';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [carts, refetch] = useCarts();
-
+  const [isadmin] = IsAdmin();
   const handlerLogout = () => {
     logout()
       .then(() => {
@@ -59,14 +60,16 @@ const Navbar = () => {
           Our Shop
         </NavLink>
       </li>
-      <li className="relative">
-        <Link to="/dashboard/cart">
-          <img className="w-12 h-12" src={cartimage} alt="" />
-        </Link>
-        <span className=" w-4 h-4 flex p-2 absolute left-10 lg:left-7 lg:right-0 lg:top-[26px] top-[30px] justify-center items-center rounded-full bg-[#ff0000] text-white">
-          {carts.length}
-        </span>
-      </li>
+      {isadmin || (
+        <li className="relative">
+          <Link to="/dashboard/cart">
+            <img className="w-12 h-12" src={cartimage} alt="" />
+          </Link>
+          <span className=" w-4 h-4 flex p-2 absolute left-10 lg:left-7 lg:right-0 lg:top-[26px] top-[30px] justify-center items-center rounded-full bg-[#ff0000] text-white">
+            {carts.length}
+          </span>
+        </li>
+      )}
       {user ? (
         <li className="flex items-center gap-2">
           <button

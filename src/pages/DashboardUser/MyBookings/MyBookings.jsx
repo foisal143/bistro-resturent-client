@@ -12,7 +12,7 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [control, setControl] = useState(true);
   useEffect(() => {
-    axiosSciure.get(`/bookings/${user?.email}`).then(res => {
+    axiosSciure.get(`/bookings?email=${user?.email}`).then(res => {
       setBookings(res.data);
     });
   }, [axiosSciure, user, control]);

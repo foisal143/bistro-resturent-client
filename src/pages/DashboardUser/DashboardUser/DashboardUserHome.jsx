@@ -71,6 +71,9 @@ const DashboardUserHome = () => {
       <div className="my-5 grid grid-cols-1 md:grid-cols-2 ">
         <div className="w-full flex justify-center items-center h-[460px] bg-[#FFEDD5]">
           <div>
+            <h3 className="upparcase mb-5 text-4xl font-semibold font-[Cinzen] text-center">
+              {isadmin ? 'Admin' : 'User'}
+            </h3>
             <div className="p-1 flex justify-center items-center w-32  h-32    mx-auto rounded-full bg-[#D1A054]">
               <img
                 className=" w-full h-full rounded-full"

@@ -16,7 +16,7 @@ const PaymentTableRow = ({ item, i }) => {
           </span>
         ))}
       </td>
-      <td>{item.price}</td>
+      <td>${item.price}</td>
       <td>{moment(item.date).format('MMM Do YY')}</td>
     </tr>
   );

@@ -19,6 +19,8 @@ import PayPage from '../pages/DashboardUser/PayPage/PayPage';
 import PaymentHistory from '../pages/DashboardUser/PaymentHistory/PaymentHistory';
 import Reservation from '../pages/DashboardUser/Reservation/Reservation';
 import MyBookings from '../pages/DashboardUser/MyBookings/MyBookings';
+import AddREview from '../pages/DashboardUser/AddReview/AddREview';
+import ManageBookings from '../pages/DashboardUser/ManageBookings/ManageBookings';
 
 const router = createBrowserRouter([
   {
@@ -108,6 +110,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: 'add-review',
+        element: (
+          <PrivateRoute>
+            <AddREview />
+          </PrivateRoute>
+        ),
+      },
 
       // admin route
       {
@@ -131,6 +141,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'manage-bookings',
+        element: (
+          <AdminRoute>
+            <ManageBookings />
           </AdminRoute>
         ),
       },

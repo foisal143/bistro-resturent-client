@@ -27,7 +27,12 @@ const Reservation = () => {
     const form = e.target;
     // Add  reservation submission logic here
     const guest = form.guest.value;
-    const bookingData = { ...formData, email: user?.email, guest };
+    const bookingData = {
+      ...formData,
+      email: user?.email,
+      guest,
+      status: 'pending',
+    };
     console.log(bookingData);
     axiosSciure.post('/bookings', bookingData).then(res => {
       if (res.data.insertedId) {
@@ -168,7 +173,7 @@ const Reservation = () => {
           </div>
 
           <div className="mt-5 text-center">
-            <button type="submit" className="bg-[#B58130] btn">
+            <button type="submit" className="bg-[#B58130] btn text-white">
               Book Now
             </button>
           </div>
