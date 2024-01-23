@@ -21,7 +21,14 @@ const AddREview = () => {
     const recipe = form.recipe.value;
     const details = form.details.value;
     const suggetions = form.suggetions.value;
-    const reviewInfo = { name, details, rating: rating, recipe, suggetions };
+    const reviewInfo = {
+      name,
+      details,
+      rating: rating,
+      recipe,
+      email: user?.email,
+      suggetions,
+    };
     axiosSciure.post('/reviews', reviewInfo).then(res => {
       if (res.data.insertedId) {
         toast.success('Review Added Done');

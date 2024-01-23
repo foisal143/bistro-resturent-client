@@ -7,17 +7,24 @@ import {
   FaShoppingBag,
   FaShoppingCart,
   FaStar,
-  FaUsers,
 } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
-import IsAdmin from '../../../hooks/isAdmin';
-import useUsers from '../../../hooks/useUsers';
+
+import { useQuery } from '@tanstack/react-query';
+import useAxiosWithAuth from '../../../hooks/axiosSciure';
 const DashboardUserHome = () => {
   const { user } = useContext(AuthContext);
+  const axiosSciure = useAxiosWithAuth();
   const [menus] = useMenu();
-  const [users] = useUsers();
-  const [isadmin] = IsAdmin();
+  const { data } = useQuery({
+    queryKey: ['userCount'],
+    queryFn: async () => {
+      const res = await axiosSciure.get(`/user-stage/${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log(data);
   return (
     <div className="px-12 pt-12  w-full bg-white">
       <h3 className="text-3xl font-[Cinzen] font-semibold ">
@@ -32,23 +39,17 @@ const DashboardUserHome = () => {
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FDE8C0] from-[#D3A256] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
-          <span className="text-4xl">
-            {isadmin ? <FaUsers /> : <FaShoppingBag />}
-          </span>
+          <span className="text-4xl">{<FaShoppingBag />}</span>
           <aside>
-            <h3 className="text-3xl font-bold">
-              {isadmin ? users.length : menus.length}
-            </h3>
-            <p className="uppercase text-xl font-semibold">
-              {isadmin ? 'users' : 'shop'}
-            </p>
+            <h3 className="text-3xl font-bold">{menus.length}</h3>
+            <p className="uppercase text-xl font-semibold">{'shop'}</p>
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FECDE9] from-[#FE4880] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
           <span className="text-4xl">{<FaPhone />}</span>
           <aside>
             <h3 className="text-3xl font-bold">
-              {`+ ${Math.round(Math.random() * 10000000000)}`}
+              {user?.phoneNumber ? user?.phoneNumber : 'Not Found'}
             </h3>
             <p className="uppercase text-xl font-semibold">{'contact'}</p>
           </aside>
@@ -58,9 +59,6 @@ const DashboardUserHome = () => {
       <div className="my-5 grid grid-cols-1 md:grid-cols-2 ">
         <div className="w-full flex justify-center items-center h-[460px] bg-[#FFEDD5]">
           <div>
-            <h3 className="upparcase mb-5 text-4xl font-semibold font-[Cinzen] text-center">
-              {'User'}
-            </h3>
             <div className="p-1 flex justify-center items-center w-32  h-32    mx-auto rounded-full bg-[#D1A054]">
               <img
                 className=" w-full h-full rounded-full"
@@ -81,16 +79,16 @@ const DashboardUserHome = () => {
 
           <ul className="ps-12 space-y-5">
             <li className="flex text-[#0088FE] items-center gap-3 text-xl font-semibold font-[Cinzen]">
-              <FaShoppingCart /> Orders: 6
+              <FaShoppingCart /> Orders: {data.orderCount}
             </li>
             <li className="flex text-[#00C4A1] items-center gap-3 text-xl font-semibold font-[Cinzen]">
-              <FaStar /> Reviews: 2
+              <FaStar /> Reviews: {data.reviewCount}
             </li>
             <li className="flex text-[#FFBB28] items-center gap-3 text-xl font-semibold font-[Cinzen]">
-              <FaCalendar /> Bookings: 1
+              <FaCalendar /> Bookings: {data.bookingCount}
             </li>
             <li className="flex text-[#FF8042] items-center gap-3 text-xl font-semibold font-[Cinzen]">
-              <FaMoneyBillAlt /> Payment:3
+              <FaMoneyBillAlt /> Payment: {data.paymentCount}
             </li>
           </ul>
         </div>
