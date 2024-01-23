@@ -13,7 +13,7 @@ const FromOurMenu = () => {
           <div className="mt-12 px-20 space-y-5 lg:flex justify-between items-center gap-10">
             <img className=" lg:w-2/5  " src={img} alt="" />
             <div>
-              <h3 className="font-[Cinzen] text-3xl text-gray-300">
+              <h3 className="font-[Cinzen] text-2xl lg:text-4xl text-gray-300">
                 March 20, 2023 <br /> WHERE CAN I GET SOME?{' '}
               </h3>
               <p className="text-gray-300 font-[Inter]">

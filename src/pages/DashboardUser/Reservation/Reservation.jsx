@@ -52,8 +52,8 @@ const Reservation = () => {
         {/* First Row */}
         <form onSubmit={handleSubmit}>
           {/* First Row */}
-          <div className="flex w-full mb-4">
-            <div className="w-1/3 pr-4">
+          <div className="lg:flex space-y-5 lg:space-y-0 w-full mb-4">
+            <div className="lg:w-1/3 pr-4">
               <label
                 htmlFor="guestCount"
                 className="block text-sm font-medium text-gray-600"
@@ -77,7 +77,7 @@ const Reservation = () => {
                 {/* Add more options as needed */}
               </select>
             </div>
-            <div className="w-1/3 pr-4">
+            <div className="lg:w-1/3 pr-4">
               <label
                 htmlFor="date"
                 className="block text-sm font-medium text-gray-600"
@@ -94,7 +94,7 @@ const Reservation = () => {
                 required
               />
             </div>
-            <div className="w-1/3 pr-4">
+            <div className="lg:w-1/3 pr-4">
               <label
                 htmlFor="time"
                 className="block text-sm font-medium text-gray-600"
@@ -114,8 +114,8 @@ const Reservation = () => {
           </div>
 
           {/* Second Row */}
-          <div className="flex mx-auto  mb-4">
-            <div className="w-1/3 pr-4">
+          <div className="lg:flex mx-auto lg:space-y-0 space-y-5 mb-4">
+            <div className="lg:w-1/3 pr-4">
               <label
                 htmlFor="guestName"
                 className="block text-sm font-medium text-gray-600"
@@ -133,7 +133,7 @@ const Reservation = () => {
                 required
               />
             </div>
-            <div className="w-1/3 pr-4">
+            <div className="lg:w-1/3 pr-4">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-600"
@@ -152,7 +152,7 @@ const Reservation = () => {
                 required
               />
             </div>
-            <div className="w-1/3 pl-4">
+            <div className="lg:w-1/3 ">
               <label
                 htmlFor="phoneNumber"
                 className="block text-sm font-medium text-gray-600"

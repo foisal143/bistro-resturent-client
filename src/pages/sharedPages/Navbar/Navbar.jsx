@@ -38,7 +38,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/dashboard"
+          to={isadmin ? '/dashboard/adminHome' : '/dashboard'}
           className={({ isActive }) => (isActive ? 'text-[#EEFF25]' : '')}
         >
           DASHBOARD

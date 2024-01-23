@@ -48,7 +48,7 @@ const AddREview = () => {
           />
         </div>
 
-        <div className="w-10/12 mx-auto mt-8 p-6 bg-gray-100 rounded-md">
+        <div className=" lg:w-10/12 mx-auto mt-8 p-6 bg-gray-100 rounded-md">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label

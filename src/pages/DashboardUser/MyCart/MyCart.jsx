@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 const MyCart = () => {
   const [carts, refetch] = useCarts();
-  const total = carts && carts.reduce((prev, value) => prev + value.price, 0);
+  const totalPrice =
+    carts && carts.reduce((prev, value) => prev + value.price, 0);
+  const total = parseFloat(totalPrice.toFixed(2));
 
   const handlerDeleteCart = id => {
     Swal.fire({
@@ -43,7 +45,7 @@ const MyCart = () => {
         subHeading="My Cart"
       ></SectionTitle>
       <div className="bg-white p-5 rounded-md lg:w-10/12 mx-auto w-full ">
-        <div className="flex  mb-5 font-[Cinzen] gap-10 justify-evenly items-center font-semibold text-3xl">
+        <div className="flex  mb-5 font-[Cinzen] gap-3 lg:gap-10 justify-evenly items-center font-semibold text-[18px]  lg:text-3xl">
           <h3>Total Orders: {carts.length}</h3>
           <h3>Total Price: ${total}</h3>
           <Link to="/dashboard/pay">

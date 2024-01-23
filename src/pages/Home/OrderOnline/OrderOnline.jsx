@@ -18,7 +18,7 @@ const OrderOnline = () => {
       <div className="my-10">
         <Swiper
           slidesPerView={4}
-          spaceBetween={30}
+          spaceBetween={20}
           pagination={{
             clickable: true,
           }}
@@ -27,35 +27,35 @@ const OrderOnline = () => {
         >
           <SwiperSlide>
             <img src={img1} alt="" />
-            <h3 className="text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
+            <h3 className=" lg:text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
               {' '}
               Salads
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={img2} alt="" />
-            <h3 className="text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
+            <h3 className="lg:text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
               {' '}
               Salads
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={img3} alt="" />
-            <h3 className="text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
+            <h3 className="lg:text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
               {' '}
               Salads
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={img4} alt="" />
-            <h3 className="text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
+            <h3 className="lg:text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
               {' '}
               Salads
             </h3>
           </SwiperSlide>
           <SwiperSlide>
             <img src={img5} alt="" />
-            <h3 className="text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
+            <h3 className="lg:text-2xl text-shadow z-[10] text-center text-white  -mt-10 font-[Cinzel] font-bold">
               {' '}
               Salads
             </h3>

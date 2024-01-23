@@ -11,7 +11,10 @@ const PaymentHistory = () => {
   useEffect(() => {
     axiosSciure.get(`/payments/${user?.email}`).then(res => {
       const data = res.data;
-      setPayments(data);
+      const sortedData = data.sort((a, b) => {
+        return a.date - b.date;
+      });
+      setPayments(sortedData);
     });
   }, [axiosSciure, user]);
 

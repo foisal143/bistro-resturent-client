@@ -21,6 +21,7 @@ import Reservation from '../pages/DashboardUser/Reservation/Reservation';
 import MyBookings from '../pages/DashboardUser/MyBookings/MyBookings';
 import AddREview from '../pages/DashboardUser/AddReview/AddREview';
 import ManageBookings from '../pages/DashboardUser/ManageBookings/ManageBookings';
+import AdminHome from '../pages/DashboardUser/AdminHome/AdminHome';
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,14 @@ const router = createBrowserRouter([
       },
 
       // admin route
+      {
+        path: 'adminHome',
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
       {
         path: 'all-users',
         element: (

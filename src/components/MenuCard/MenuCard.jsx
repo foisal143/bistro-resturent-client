@@ -11,8 +11,9 @@ const MenuCard = ({ menu }) => {
       <div className="flex-1">
         <h3 className="text-xl font-bold font-[Cinzen]">{name} ----------</h3>
         <p className="font-[Inter]">{recipe}</p>
+        <p className="text-[#BB8506] lg:hidden">${price}</p>
       </div>
-      <p className="text-[#BB8506]">${price}</p>
+      <p className="text-[#BB8506] hidden lg:block">${price}</p>
     </div>
   );
 };

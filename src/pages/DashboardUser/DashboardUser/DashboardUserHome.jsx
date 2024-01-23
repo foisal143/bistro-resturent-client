@@ -8,7 +8,6 @@ import {
   FaShoppingCart,
   FaStar,
   FaUsers,
-  FaWallet,
 } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../../AuthPorvaider/AuthProvaider';
@@ -26,16 +25,10 @@ const DashboardUserHome = () => {
       </h3>
       <div className="grid my-10 grid-cols-1 md:grid-cols-3 gap-5">
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FCDBFF] from-[#BB34F5] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
-          <span className="text-4xl">
-            {isadmin ? <FaWallet /> : <IoWalletSharp></IoWalletSharp>}
-          </span>
+          <span className="text-4xl">{<IoWalletSharp></IoWalletSharp>}</span>
           <aside>
-            <h3 className="text-3xl font-bold">
-              {isadmin ? '554151' : menus.length}
-            </h3>
-            <p className="uppercase text-xl font-semibold">
-              {isadmin ? 'revenue' : 'menu'}
-            </p>
+            <h3 className="text-3xl font-bold">{menus.length}</h3>
+            <p className="uppercase text-xl font-semibold">{'menu'}</p>
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FDE8C0] from-[#D3A256] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
@@ -52,18 +45,12 @@ const DashboardUserHome = () => {
           </aside>
         </div>
         <div className="font-[Cinzen] bg-gradient-to-r to-[#FECDE9] from-[#FE4880] w-full text-white rounded-md h-[120px] flex justify-center items-center gap-3">
-          <span className="text-4xl">
-            {isadmin ? <FaShoppingBag /> : <FaPhone />}
-          </span>
+          <span className="text-4xl">{<FaPhone />}</span>
           <aside>
             <h3 className="text-3xl font-bold">
-              {isadmin
-                ? menus.length
-                : `+ ${Math.round(Math.random() * 10000000000)}`}
+              {`+ ${Math.round(Math.random() * 10000000000)}`}
             </h3>
-            <p className="uppercase text-xl font-semibold">
-              {isadmin ? 'products' : 'contact'}
-            </p>
+            <p className="uppercase text-xl font-semibold">{'contact'}</p>
           </aside>
         </div>
       </div>
@@ -72,7 +59,7 @@ const DashboardUserHome = () => {
         <div className="w-full flex justify-center items-center h-[460px] bg-[#FFEDD5]">
           <div>
             <h3 className="upparcase mb-5 text-4xl font-semibold font-[Cinzen] text-center">
-              {isadmin ? 'Admin' : 'User'}
+              {'User'}
             </h3>
             <div className="p-1 flex justify-center items-center w-32  h-32    mx-auto rounded-full bg-[#D1A054]">
               <img

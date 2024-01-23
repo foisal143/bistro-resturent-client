@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuCard from '../../../components/MenuCard/MenuCard';
 import useMenu from '../../../hooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
   // const [menus, setMenus] = useState([]);
@@ -17,7 +18,9 @@ const Menu = () => {
         ))}
       </div>
       <div className="text-center mt-5">
-        <button className="btn-coustom">view full menu</button>
+        <Link to="/our-menu">
+          <button className="btn-coustom">view full menu</button>
+        </Link>
       </div>
     </section>
   );
